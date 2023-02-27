@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <title>INSAF</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/>
+
+</head>
+
+
+
+<body>   
+   
+
+    <div class="header">
+        <img src = "img/logo.png" id ="image" width="100" height="100" class="logo">
+        <!-- <h5>INSAF</h5> -->
+    </div>
+
+
+    <div class="upper-btn-box">
+        <div class="left-box">
+            <button id="add-btn"><i class="fa fa-plus"></i>&nbsp; AJOUTER</button>
+            <button id="del-all-btn" style="background-color: #ff5722"><i class="fa fa-eraser"></i> &nbsp; SUPPRIMER TOUTES LES DONNÉES</button>
+            <input type="checkbox" name="" id="del-all-box">
+        </div>
+        <div class="right-box">
+            <i class="fa fa-search"></i>
+            <input type="text" id="empId" placeholder="Enter nom /prenom /gsm ...">
+            <button class="rech">RECHERCHE</button>
+        </div>
+    </div>
+
+
+    <div class="table-wrapper">
+        <table class="fl-table" id="tblCustomers" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th class="sortable">Sr No</th>
+                    <th>Profile</th>
+                    <th class="sortable">GSM</th>
+                    <th class="sortable">PRÉNOM</th>
+                    <th class="sortable">NOM</th>
+                    <th class="sortable">E-mail</th>
+                    <th class="sortable">ENTREPRISE</th>
+                    <th class="sortable">STATUT</th>
+                    <th class="sortable">ADRESSE</th>
+                    <th>ÉDITER/SUPPRIMER</th>
+                </tr>
+            </thead>
+        <tbody id="table-data">
+        </tbody>
+        
+        </table>
+    </div>
+
+    
+   <div>
+    <div class="containerb">
+        <div class="centerb">
+         <button class="download1" id="download-btn">Exporter en XLS</button>
+         <button class="download1" id="download-btn2">Exporter en CSV</button>
+         <button class="download1" id="btnExport" onclick="Export()">Exporter en PDF</button>
+     
+        </div>
+       
+    </div>
+   </div>
+
+   
+    
+    <div class="modal">
+        <i class="fa fa-times-circle close-icon"></i>
+        <div class="left-modal">
+            <div class="img-box">
+                <img src="img/avtar.jpg" id="profile-pic" width="150" height="150" alt="">
+                <i class="fa fa-plus"></i>
+                <input type="file" id="upload-field">
+            </div>
+        </div>
+        <div class="right-modal">
+            <form id="register-form">
+                <div class="input-box">
+                    <label for="gsm">GSM</label>
+                    <input type="text" required id="gsm">
+                </div>
+                <div class="input-box">
+                    <label for="prenom">PRÉNOM</label>
+                    <input type="text" required id="prenom">
+                </div>
+                <div class="input-box">
+                    <label for="l-name">NOM</label>
+                    <input type="text" required id="l-name">
+                </div>
+                <div class="input-box">
+                    <label for="email">E-mail</label>
+                    <input type="text" required id="email">
+                </div>
+                <div class="input-box">
+                    <label for="entreprise">ENTREPRISE</label>
+                    <input type="text" required id="entreprise">
+                </div>
+                <div class="input-box">
+                    <label for="statut">STATUT</label>
+                    <input type="text" required id="statut-title">
+                </div>
+                <div class="input-box">
+                    <label for="adresse">ADRESSE</label>
+                    <input type="text" required id="adresse-title">
+                </div>
+                <div class="input-box">
+                    <button id="register-btn">ENREGISTER</button>
+                    <button id="update-btn" disabled="disabled" style="background-color: #ff5722;">METTRE À JOUR</button>
+                </div>
+            </form>
+        </div>
+          <!-- Sorting table -->
+    <script>
+    $(document).ready(function() {
+        $('#tblCustomers').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+        }});
+    });
+    </script>
+
+
+
+    <script src="js/index.js"></script>
+    <script src="js/dataToFile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</body>
+
+</html>
